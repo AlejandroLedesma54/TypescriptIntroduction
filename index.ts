@@ -68,9 +68,9 @@ nombres.forEach(name=>console.log(`For Each: ${name}`));
 // Estructuras de datos y funciones
 
 // 1
-let numbersToSum: number []= [1,5,6,9,10];
+const numbersToSum: number []= [1,5,6,9,10];
 
-let total = numbersToSum.reduce((a, v) => a + v, 0);
+const total: number= numbersToSum.reduce((a, v) => a + v, 0);
 
 console.log(total)
 
@@ -154,7 +154,7 @@ console.log(maxValue2(newArray));
 
 
 // Tarea 2
-function validateParameters<T>(first: T, second: T, ...rest: any[]): void {
+const verify = function validateParameters<T>(first: T, second: T, ...rest: any[]): void {
     // Verificar que los dos primeros parámetros sean del mismo tipo
     if (typeof first !== typeof second) {
         throw new Error("Los dos primeros parámetros deben ser del mismo tipo.");
@@ -170,7 +170,7 @@ function validateParameters<T>(first: T, second: T, ...rest: any[]): void {
     console.log("Todos los parámetros son válidos.");
 }
 
-console.log(validateParameters(1,2,3,"hola"));
+// console.log(validateParameters(1,2,3,"hola"));
 // Tarea 3
 
 function rotateMatrix90Degrees(matrix: number[][]): number[][] {
@@ -202,3 +202,93 @@ const matrix: number[][] = [
 
 const rotatedMatrix = rotateMatrix90Degrees(matrix);
 console.log(rotatedMatrix);
+
+class Human {
+    private name: string;
+    private age: number;
+    private hobbie: string;
+  
+    constructor(name: string, age: number, hobbie: string) {
+      this.name = name;
+      this.age = age;
+      this.hobbie = hobbie;
+    }
+  
+    greet(): string {
+      return `Hello, my name is ${this.name} and I'm ${this.age} years old and I like ${this.hobbie}`;
+    }
+  }
+  
+  let person = new Human("Alejandro", 25, "Videogames");
+  console.log(person.greet());
+
+  // Herencia de clases.
+
+
+
+//   const validatenNumber = (number: number) => {const validate: string = number ==0?"Number is 0": number > 0 ? "Number is positive": "Number is negative"; }
+
+const validateNumber = (number: number):string => {
+    const validate: string = number === 0 ?"Number is 0": number > 0 ? "Number is positive": "Number is negative";
+
+    return validate
+ }
+
+ console.log(validateNumber(-1))
+
+
+ const arrayNum: number[] = [2,5,10]
+ function maxNum(arrayNum: number[]): number {
+    return arrayNum.sort((a,b)=>b-a)[0]
+ }
+
+ console.log(maxNum(arrayNum))
+
+
+
+ function restParameters(...args: (number | string | boolean)[]): string {
+    const firstParameterType: string = typeof args[0];
+    const secondParameterType: string = typeof args[1];
+
+    if (firstParameterType !== secondParameterType) {
+        return "The first two parameters are not the same type";
+    }
+
+    for (const arg of args) {
+        if (typeof arg !== firstParameterType) {
+            return "Not all parameters are of the same type";
+        }
+    }
+
+    return "All parameters are of the same type.";
+}
+
+const data: (number | string | boolean)[]= [1,2,true]
+
+console.log(restParameters(...data));
+// herencia de clases
+
+class Animal {
+    protected name: string;
+  
+    constructor(name: string) {
+      this.name = name;
+    }
+  
+    speak(): string {
+      return `${this.name} makes a sound.`;
+    }
+  }
+
+  class Lion extends Animal {
+    constructor(name: string) {
+        super(name);
+    }
+
+    public getName(): string {
+        return this.name;
+    }
+}
+
+let lion = new Lion("Alejandro");
+console.log(lion.getName()); // Output: Simba// Error: Property 'name' is protected and only accessible within class 'Animal' and its subclasses.
